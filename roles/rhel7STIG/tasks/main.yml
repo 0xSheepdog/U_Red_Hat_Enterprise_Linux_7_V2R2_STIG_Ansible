@@ -1,0 +1,1887 @@
+- name: populate package facts
+  package_facts:
+# R-102353 RHEL-07-040611
+- name: stigrule_102353_net_ipv4_conf_all_rp_filter
+  sysctl:
+    name: net.ipv4.conf.all.rp_filter
+    value: "{{ rhel7STIG_stigrule_102353_net_ipv4_conf_all_rp_filter_Value }}"
+  when: rhel7STIG_stigrule_102353_Manage
+# R-102353 RHEL-07-040611
+- name: stigrule_102353_net_ipv4_conf_default_rp_filter
+  sysctl:
+    name: net.ipv4.conf.default.rp_filter
+    value: "{{ rhel7STIG_stigrule_102353_net_ipv4_conf_default_rp_filter_Value }}"
+  when: rhel7STIG_stigrule_102353_Manage
+# R-86483 RHEL-07-010030
+- name: stigrule_86483__etc_dconf_db_local_d_01_banner_message
+  ini_file:
+    path: /etc/dconf/db/local.d/01-banner-message
+    section: org/gnome/login-screen
+    option: banner-message-enable
+    value: "{{ rhel7STIG_stigrule_86483__etc_dconf_db_local_d_01_banner_message_Value }}"
+    no_extra_spaces: yes
+  notify: dconf_update
+  when:
+    - rhel7STIG_stigrule_86483_Manage
+    - "'dconf' in packages"
+# R-86485 RHEL-07-010040
+- name: stigrule_86485__etc_dconf_db_local_d_01_banner_message
+  ini_file:
+    path: /etc/dconf/db/local.d/01-banner-message
+    section: org/gnome/login-screen
+    option: banner-message-text
+    value: "{{ rhel7STIG_stigrule_86485__etc_dconf_db_local_d_01_banner_message_Value }}"
+    no_extra_spaces: yes
+  notify: dconf_update
+  when:
+    - rhel7STIG_stigrule_86485_Manage
+    - "'dconf' in packages"
+# R-86487 RHEL-07-010050
+- name: stigrule_86487__etc_issue
+  copy:
+    dest: "{{ rhel7STIG_stigrule_86487__etc_issue_Dest }}"
+    content: "{{ rhel7STIG_stigrule_86487__etc_issue_Content }}"
+  when:
+    - rhel7STIG_stigrule_86487_Manage
+# R-86515 RHEL-07-010060
+- name: stigrule_86515__etc_dconf_db_local_d_00_screensaver
+  ini_file:
+    path: /etc/dconf/db/local.d/00-screensaver
+    section: org/gnome/desktop/screensaver
+    option: lock-enabled
+    value: "{{ rhel7STIG_stigrule_86515__etc_dconf_db_local_d_00_screensaver_Value }}"
+    no_extra_spaces: yes
+  notify: dconf_update
+  when:
+    - rhel7STIG_stigrule_86515_Manage
+    - "'dconf' in packages"
+# R-86517 RHEL-07-010070
+- name: stigrule_86517__etc_dconf_db_local_d_00_screensaver
+  ini_file:
+    path: /etc/dconf/db/local.d/00-screensaver
+    section: org/gnome/desktop/session
+    option: idle-delay
+    value: "{{ rhel7STIG_stigrule_86517__etc_dconf_db_local_d_00_screensaver_Value }}"
+    no_extra_spaces: yes
+  notify: dconf_update
+  when:
+    - rhel7STIG_stigrule_86517_Manage
+    - "'dconf' in packages"
+# R-86521 RHEL-07-010090
+- name: stigrule_86521_screen
+  yum:
+    name: screen
+    state: "{{ rhel7STIG_stigrule_86521_screen_State }}"
+  when: rhel7STIG_stigrule_86521_Manage
+# R-86523 RHEL-07-010100
+- name: stigrule_86523__etc_dconf_db_local_d_00_screensaver
+  ini_file:
+    path: /etc/dconf/db/local.d/00-screensaver
+    section: org/gnome/desktop/screensaver
+    option: idle-activation-enabled
+    value: "{{ rhel7STIG_stigrule_86523__etc_dconf_db_local_d_00_screensaver_Value }}"
+    no_extra_spaces: yes
+  notify: dconf_update
+  when:
+    - rhel7STIG_stigrule_86523_Manage
+    - "'dconf' in packages"
+# R-86525 RHEL-07-010110
+- name: stigrule_86525__etc_dconf_db_local_d_00_screensaver
+  ini_file:
+    path: /etc/dconf/db/local.d/00-screensaver
+    section: org/gnome/desktop/screensaver
+    option: lock-delay
+    value: "{{ rhel7STIG_stigrule_86525__etc_dconf_db_local_d_00_screensaver_Value }}"
+    no_extra_spaces: yes
+  notify: dconf_update
+  when:
+    - rhel7STIG_stigrule_86525_Manage
+    - "'dconf' in packages"
+# R-86527 RHEL-07-010120
+- name: stigrule_86527__etc_security_pwquality_conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '^\s*ucredit'
+    line: "{{ rhel7STIG_stigrule_86527__etc_security_pwquality_conf_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86527_Manage
+# R-86529 RHEL-07-010130
+- name: stigrule_86529__etc_security_pwquality_conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '^\s*lcredit'
+    line: "{{ rhel7STIG_stigrule_86529__etc_security_pwquality_conf_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86529_Manage
+# R-86531 RHEL-07-010140
+- name: stigrule_86531__etc_security_pwquality_conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '^\s*dcredit'
+    line: "{{ rhel7STIG_stigrule_86531__etc_security_pwquality_conf_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86531_Manage
+# R-86533 RHEL-07-010150
+- name: stigrule_86533__etc_security_pwquality_conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '^\s*ocredit'
+    line: "{{ rhel7STIG_stigrule_86533__etc_security_pwquality_conf_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86533_Manage
+# R-86535 RHEL-07-010160
+- name: stigrule_86535__etc_security_pwquality_conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '^\s*difok'
+    line: "{{ rhel7STIG_stigrule_86535__etc_security_pwquality_conf_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86535_Manage
+# R-86537 RHEL-07-010170
+- name: stigrule_86537__etc_security_pwquality_conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '^\s*minclass'
+    line: "{{ rhel7STIG_stigrule_86537__etc_security_pwquality_conf_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86537_Manage
+# R-86539 RHEL-07-010180
+- name: stigrule_86539__etc_security_pwquality_conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '^\s*maxrepeat'
+    line: "{{ rhel7STIG_stigrule_86539__etc_security_pwquality_conf_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86539_Manage
+# R-86541 RHEL-07-010190
+- name: stigrule_86541__etc_security_pwquality_conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '^\s*maxclassrepeat'
+    line: "{{ rhel7STIG_stigrule_86541__etc_security_pwquality_conf_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86541_Manage
+# R-86545 RHEL-07-010210
+- name: stigrule_86545__etc_login_defs
+  lineinfile:
+    path: /etc/login.defs
+    regexp: '^ENCRYPT_METHOD'
+    line: "{{ rhel7STIG_stigrule_86545__etc_login_defs_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86545_Manage
+# R-86547 RHEL-07-010220
+- name: stigrule_86547__etc_libuser_conf
+  ini_file:
+    path: /etc/libuser.conf
+    section: defaults
+    option: crypt_style
+    value: "{{ rhel7STIG_stigrule_86547__etc_libuser_conf_Value }}"
+    no_extra_spaces: no
+  when:
+    - rhel7STIG_stigrule_86547_Manage
+# R-86549 RHEL-07-010230
+- name: stigrule_86549__etc_login_defs
+  lineinfile:
+    path: /etc/login.defs
+    regexp: '^PASS_MIN_DAYS'
+    line: "{{ rhel7STIG_stigrule_86549__etc_login_defs_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86549_Manage
+# R-86551 RHEL-07-010240
+- name: get all non-compliant accounts (minimum)
+  shell: "awk -F: '{cmd=\"id -u \"$1|getline uid;if($4<1 && uid>=1000 && uid!=65534 && uid!=65535 && uid!=4294967294 && uid!=4294967295){print $1}}' /etc/shadow"
+  changed_when: False
+  check_mode: no
+  register: foreach
+- name: stigrule_86551_chage__m_1_user
+  shell: "{{ rhel7STIG_stigrule_86551_chage__m_1_user_Command }} {{ item }}"
+  with_items: "{{ foreach.stdout_lines }}"
+  when:
+    - rhel7STIG_stigrule_86551_Manage
+# R-86553 RHEL-07-010250
+- name: stigrule_86553__etc_login_defs
+  lineinfile:
+    path: /etc/login.defs
+    regexp: '^PASS_MAX_DAYS'
+    line: "{{ rhel7STIG_stigrule_86553__etc_login_defs_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86553_Manage
+# R-86555 RHEL-07-010260
+- name: get all non-compliant accounts (maximum)
+  shell: "awk -F: '{cmd=\"id -u \"$1|getline uid;if($5>60 && uid>=1000 && uid!=65534 && uid!=65535 && uid!=4294967294 && uid!=4294967295){print $1}}' /etc/shadow"
+  changed_when: False
+  check_mode: no
+  register: foreach
+- name: stigrule_86555_chage__M_60_user
+  shell: "{{ rhel7STIG_stigrule_86555_chage__M_60_user_Command }} {{ item }}"
+  with_items: "{{ foreach.stdout_lines }}"
+  when:
+    - rhel7STIG_stigrule_86555_Manage
+# R-86559 RHEL-07-010280
+- name: stigrule_86559__etc_security_pwquality_conf
+  lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '^\s*minlen'
+    line: "{{ rhel7STIG_stigrule_86559__etc_security_pwquality_conf_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86559_Manage
+# R-86563 RHEL-07-010300
+- name: stigrule_86563_PermitEmptyPasswords
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)PermitEmptyPasswords\s+'
+    line: "{{ rhel7STIG_stigrule_86563_PermitEmptyPasswords_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86563_Manage
+    - "'openssh-server' in packages"
+# R-86565 RHEL-07-010310
+- name: stigrule_86565__etc_default_useradd
+  lineinfile:
+    path: /etc/default/useradd
+    regexp: '^INACTIVE'
+    line: "{{ rhel7STIG_stigrule_86565__etc_default_useradd_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86565_Manage
+# R-86575 RHEL-07-010430
+- name: stigrule_86575__etc_login_defs
+  lineinfile:
+    path: /etc/login.defs
+    regexp: '^FAIL_DELAY'
+    line: "{{ rhel7STIG_stigrule_86575__etc_login_defs_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86575_Manage
+# R-86577 RHEL-07-010440
+- name: stigrule_86577__etc_gdm_custom_conf
+  ini_file:
+    path: /etc/gdm/custom.conf
+    section: daemon
+    option: AutomaticLoginEnable
+    value: "{{ rhel7STIG_stigrule_86577__etc_gdm_custom_conf_Value }}"
+    no_extra_spaces: yes
+  when:
+    - rhel7STIG_stigrule_86577_Manage
+    - "'gdm' in packages"
+# R-86579 RHEL-07-010450
+- name: stigrule_86579__etc_gdm_custom_conf
+  ini_file:
+    path: /etc/gdm/custom.conf
+    section: daemon
+    option: TimedLoginEnable
+    value: "{{ rhel7STIG_stigrule_86579__etc_gdm_custom_conf_Value }}"
+    no_extra_spaces: yes
+  when:
+    - rhel7STIG_stigrule_86579_Manage
+    - "'gdm' in packages"
+# R-86581 RHEL-07-010460
+- name: stigrule_86581_PermitUserEnvironment
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)PermitUserEnvironment\s+'
+    line: "{{ rhel7STIG_stigrule_86581_PermitUserEnvironment_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86581_Manage
+    - "'openssh-server' in packages"
+# R-86583 RHEL-07-010470
+- name: stigrule_86583_HostbasedAuthentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)HostbasedAuthentication\s+'
+    line: "{{ rhel7STIG_stigrule_86583_HostbasedAuthentication_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86583_Manage
+    - "'openssh-server' in packages"
+# R-86591 RHEL-07-020000
+- name: stigrule_86591_rsh_server
+  yum:
+    name: rsh-server
+    state: "{{ rhel7STIG_stigrule_86591_rsh_server_State }}"
+  when: rhel7STIG_stigrule_86591_Manage
+# R-86593 RHEL-07-020010
+- name: stigrule_86593_ypserv
+  yum:
+    name: ypserv
+    state: "{{ rhel7STIG_stigrule_86593_ypserv_State }}"
+  when: rhel7STIG_stigrule_86593_Manage
+# R-86597 RHEL-07-020030
+# Edit email address.
+- name: stigrule_86597__etc_cron_daily_aide
+  copy:
+    dest: "{{ rhel7STIG_stigrule_86597__etc_cron_daily_aide_Dest }}"
+    content: "{{ rhel7STIG_stigrule_86597__etc_cron_daily_aide_Content }}"
+    mode: "{{ rhel7STIG_stigrule_86597__etc_cron_daily_aide_Mode }}"
+  when:
+    - rhel7STIG_stigrule_86597_Manage
+# R-86597 RHEL-07-020030
+# Edit email address.
+- name: stigrule_86597_aide
+  yum:
+    name: aide
+    state: "{{ rhel7STIG_stigrule_86597_aide_State }}"
+  when: rhel7STIG_stigrule_86597_Manage
+# R-86599 RHEL-07-020040
+# Edit email address.
+- name: stigrule_86599__etc_cron_daily_aide_notify
+  copy:
+    dest: "{{ rhel7STIG_stigrule_86599__etc_cron_daily_aide_notify_Dest }}"
+    content: "{{ rhel7STIG_stigrule_86599__etc_cron_daily_aide_notify_Content }}"
+    mode: "{{ rhel7STIG_stigrule_86599__etc_cron_daily_aide_notify_Mode }}"
+  when:
+    - rhel7STIG_stigrule_86599_Manage
+# R-86599 RHEL-07-020040
+# Edit email address.
+- name: stigrule_86599_aide_notify
+  yum:
+    name: aide
+    state: "{{ rhel7STIG_stigrule_86599_aide_notify_State }}"
+  when: rhel7STIG_stigrule_86599_Manage
+# R-86601 RHEL-07-020050
+- name: stigrule_86601__etc_yum_conf
+  ini_file:
+    path: /etc/yum.conf
+    section: main
+    option: gpgcheck
+    value: "{{ rhel7STIG_stigrule_86601__etc_yum_conf_Value }}"
+    no_extra_spaces: yes
+  when:
+    - rhel7STIG_stigrule_86601_Manage
+# R-86603 RHEL-07-020060
+- name: stigrule_86603__etc_yum_conf
+  ini_file:
+    path: /etc/yum.conf
+    section: main
+    option: localpkg_gpgcheck
+    value: "{{ rhel7STIG_stigrule_86603__etc_yum_conf_Value }}"
+    no_extra_spaces: yes
+  when:
+    - rhel7STIG_stigrule_86603_Manage
+# R-86607 RHEL-07-020100
+- name: stigrule_86607__etc_modprobe_d_blacklist_conf
+  lineinfile:
+    path: /etc/modprobe.d/blacklist.conf
+    regexp: '^blacklist'
+    line: "{{ rhel7STIG_stigrule_86607__etc_modprobe_d_blacklist_conf_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86607_Manage
+# R-86609 RHEL-07-020110
+- name: check if autofs.service is installed
+  shell: ! systemctl list-unit-files | grep "^autofs.service[ \t]\+"
+  changed_when: False
+  check_mode: no
+  register: result
+  failed_when: result.rc > 1
+- name: stigrule_86609_autofs_disable
+  service:
+    name: autofs.service
+    enabled: "{{ rhel7STIG_stigrule_86609_autofs_disable_Enabled }}"
+  when:
+    - rhel7STIG_stigrule_86609_Manage
+    - result.rc == 0
+# R-86609 RHEL-07-020110
+- name: check if autofs.service is installed
+  shell: ! systemctl list-unit-files | grep "^autofs.service[ \t]\+"
+  changed_when: False
+  check_mode: no
+  register: result
+  failed_when: result.rc > 1
+- name: stigrule_86609_autofs_stop
+  service:
+    name: autofs.service
+    state: "{{ rhel7STIG_stigrule_86609_autofs_stop_State }}"
+  when:
+    - rhel7STIG_stigrule_86609_Manage
+    - result.rc == 0
+# R-86611 RHEL-07-020200
+- name: stigrule_86611__etc_yum_conf
+  ini_file:
+    path: /etc/yum.conf
+    section: main
+    option: clean_requirements_on_remove
+    value: "{{ rhel7STIG_stigrule_86611__etc_yum_conf_Value }}"
+    no_extra_spaces: yes
+  when:
+    - rhel7STIG_stigrule_86611_Manage
+# R-86613 RHEL-07-020210
+- name: stigrule_86613__etc_selinux_config
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: "{{ rhel7STIG_stigrule_86613__etc_selinux_config_Line }}"
+    create: yes
+  notify: do_reboot
+  when:
+    - rhel7STIG_stigrule_86613_Manage
+# R-86615 RHEL-07-020220
+- name: stigrule_86615__etc_selinux_config
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUXTYPE='
+    line: "{{ rhel7STIG_stigrule_86615__etc_selinux_config_Line }}"
+    create: yes
+  notify: do_reboot
+  when:
+    - rhel7STIG_stigrule_86615_Manage
+# R-86617 RHEL-07-020230
+- name: stigrule_86617_systemctl_mask_ctrl_alt_del_target
+  systemd:
+    name: ctrl-alt-del.target
+    enabled: no
+    masked: yes
+  when:
+    - rhel7STIG_stigrule_86617_Manage
+# R-86617 RHEL-07-020230
+- name: stigrule_86617__etc_dconf_db_local_d_00_disable_CAD
+  ini_file:
+    path: /etc/dconf/db/local.d/00-disable-CAD
+    section: org/gnome/settings-daemon/plugins/media-keys
+    option: logout
+    value: "{{ rhel7STIG_stigrule_86617__etc_dconf_db_local_d_00_disable_CAD_Value }}"
+    no_extra_spaces: yes
+  when:
+    - rhel7STIG_stigrule_86617_Manage
+    - "'dconf' in packages"
+# R-86619 RHEL-07-020240
+- name: stigrule_86619__etc_login_defs
+  lineinfile:
+    path: /etc/login.defs
+    regexp: '^UMASK'
+    line: "{{ rhel7STIG_stigrule_86619__etc_login_defs_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86619_Manage
+# R-86637 RHEL-07-020610
+- name: stigrule_86637__etc_login_defs
+  lineinfile:
+    path: /etc/login.defs
+    regexp: '^CREATE_HOME'
+    line: "{{ rhel7STIG_stigrule_86637__etc_login_defs_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86637_Manage
+# R-86675 RHEL-07-021100
+- name: stigrule_86675__etc_rsyslog_conf
+  lineinfile:
+    path: /etc/rsyslog.conf
+    regexp: '^cron\.\* '
+    line: "{{ rhel7STIG_stigrule_86675__etc_rsyslog_conf_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86675_Manage
+# R-86677 RHEL-07-021110
+- name: check that the /etc/cron.allow exists
+  stat:
+    path: /etc/cron.allow
+  changed_when: False
+  check_mode: no
+  register: stat_result
+- name: stigrule_86677__etc_cron_allow
+  file:
+    dest: "{{ rhel7STIG_stigrule_86677__etc_cron_allow_Dest }}"
+    owner: "{{ rhel7STIG_stigrule_86677__etc_cron_allow_Owner }}"
+  when:
+    - stat_result.stat.exists == True
+    - rhel7STIG_stigrule_86677_Manage
+# R-86679 RHEL-07-021120
+- name: check that the /etc/cron.allow exists
+  stat:
+    path: /etc/cron.allow
+  changed_when: False
+  check_mode: no
+  register: stat_result
+- name: stigrule_86679__etc_cron_allow
+  file:
+    dest: "{{ rhel7STIG_stigrule_86679__etc_cron_allow_Dest }}"
+    group: "{{ rhel7STIG_stigrule_86679__etc_cron_allow_Group }}"
+  when:
+    - stat_result.stat.exists == True
+    - rhel7STIG_stigrule_86679_Manage
+# R-86681 RHEL-07-021300
+# If kernel core dumps are required, document the need with the ISSO.
+- name: check if kdump.service is installed
+  shell: ! systemctl list-unit-files | grep "^kdump.service[ \t]\+"
+  changed_when: False
+  check_mode: no
+  register: result
+  failed_when: result.rc > 1
+- name: stigrule_86681_kdump_disable
+  service:
+    name: kdump.service
+    enabled: "{{ rhel7STIG_stigrule_86681_kdump_disable_Enabled }}"
+  when:
+    - rhel7STIG_stigrule_86681_Manage
+    - result.rc == 0
+# R-86681 RHEL-07-021300
+# If kernel core dumps are required, document the need with the ISSO.
+- name: check if kdump.service is installed
+  shell: ! systemctl list-unit-files | grep "^kdump.service[ \t]\+"
+  changed_when: False
+  check_mode: no
+  register: result
+  failed_when: result.rc > 1
+- name: stigrule_86681_kdump_stop
+  service:
+    name: kdump.service
+    state: "{{ rhel7STIG_stigrule_86681_kdump_stop_State }}"
+  when:
+    - rhel7STIG_stigrule_86681_Manage
+    - result.rc == 0
+# R-86689 RHEL-07-021340
+- name: check if tmp.mount is installed
+  shell: ! systemctl list-unit-files | grep "^tmp.mount[ \t]\+"
+  changed_when: False
+  check_mode: no
+  register: result
+  failed_when: result.rc > 1
+- name: stigrule_86689_tmp_mount
+  service:
+    name: tmp.mount
+    enabled: "{{ rhel7STIG_stigrule_86689_tmp_mount_Enabled }}"
+  when:
+    - rhel7STIG_stigrule_86689_Manage
+    - result.rc == 0
+# R-86701 RHEL-07-021710
+- name: stigrule_86701_telnet_server
+  yum:
+    name: telnet-server
+    state: "{{ rhel7STIG_stigrule_86701_telnet_server_State }}"
+  when: rhel7STIG_stigrule_86701_Manage
+# R-86703 RHEL-07-030000
+- name: check if auditd.service is installed
+  shell: ! systemctl list-unit-files | grep "^auditd.service[ \t]\+"
+  changed_when: False
+  check_mode: no
+  register: result
+  failed_when: result.rc > 1
+- name: stigrule_86703_auditd_enable
+  service:
+    name: auditd.service
+    enabled: "{{ rhel7STIG_stigrule_86703_auditd_enable_Enabled }}"
+  when:
+    - rhel7STIG_stigrule_86703_Manage
+    - result.rc == 0
+# R-86703 RHEL-07-030000
+- name: check if auditd.service is installed
+  shell: ! systemctl list-unit-files | grep "^auditd.service[ \t]\+"
+  changed_when: False
+  check_mode: no
+  register: result
+  failed_when: result.rc > 1
+- name: stigrule_86703_auditd_start
+  service:
+    name: auditd.service
+    state: "{{ rhel7STIG_stigrule_86703_auditd_start_State }}"
+  when:
+    - rhel7STIG_stigrule_86703_Manage
+    - result.rc == 0
+# R-86705 RHEL-07-030010
+- name: stigrule_86705__etc_audit_rules_d_audit_rules_critical_error
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-f '
+    line: "{{ rhel7STIG_stigrule_86705__etc_audit_rules_d_audit_rules_critical_error_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86705_Manage
+# R-86707 RHEL-07-030300
+# Ensure to set the IP address of the log aggregation server.
+- name: stigrule_86707__etc_audisp_audisp_remote_conf
+  lineinfile:
+    path: /etc/audisp/audisp-remote.conf
+    regexp: '^remote_server = '
+    line: "{{ rhel7STIG_stigrule_86707__etc_audisp_audisp_remote_conf_Line }}"
+    create: yes
+  notify: auditd_restart
+  when:
+    - rhel7STIG_stigrule_86707_Manage
+# R-86709 RHEL-07-030310
+# Ensure to set the IP address of the log aggregation server.
+- name: stigrule_86709__etc_audisp_audisp_remote_conf
+  lineinfile:
+    path: /etc/audisp/audisp-remote.conf
+    regexp: '^enable_krb5 = '
+    line: "{{ rhel7STIG_stigrule_86709__etc_audisp_audisp_remote_conf_Line }}"
+    create: yes
+  notify: auditd_restart
+  when:
+    - rhel7STIG_stigrule_86709_Manage
+# R-86711 RHEL-07-030320
+- name: stigrule_86711__etc_audisp_audisp_remote_conf
+  lineinfile:
+    path: /etc/audisp/audisp-remote.conf
+    regexp: '^disk_full_action = '
+    line: "{{ rhel7STIG_stigrule_86711__etc_audisp_audisp_remote_conf_Line }}"
+    create: yes
+  notify: auditd_restart
+  when:
+    - rhel7STIG_stigrule_86711_Manage
+# R-86715 RHEL-07-030340
+- name: stigrule_86715__etc_audit_auditd_conf
+  lineinfile:
+    path: /etc/audit/auditd.conf
+    regexp: '^space_left_action = '
+    line: "{{ rhel7STIG_stigrule_86715__etc_audit_auditd_conf_Line }}"
+    create: yes
+  notify: auditd_restart
+  when:
+    - rhel7STIG_stigrule_86715_Manage
+# R-86717 RHEL-07-030350
+- name: stigrule_86717__etc_audit_auditd_conf
+  lineinfile:
+    path: /etc/audit/auditd.conf
+    regexp: '^action_mail_acct = '
+    line: "{{ rhel7STIG_stigrule_86717__etc_audit_auditd_conf_Line }}"
+    create: yes
+  notify: auditd_restart
+  when:
+    - rhel7STIG_stigrule_86717_Manage
+# R-86719 RHEL-07-030360
+- name : stigrule_86719__etc_audit_rules_d_audit_rules_euid_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid$'
+    line: "{{ rhel7STIG_stigrule_86719__etc_audit_rules_d_audit_rules_euid_b32_Line }}"
+  when: rhel7STIG_stigrule_86719_Manage
+# R-86719 RHEL-07-030360
+- name : stigrule_86719__etc_audit_rules_d_audit_rules_euid_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid$'
+    line: "{{ rhel7STIG_stigrule_86719__etc_audit_rules_d_audit_rules_euid_b64_Line }}"
+  when: rhel7STIG_stigrule_86719_Manage
+# R-86719 RHEL-07-030360
+- name : stigrule_86719__etc_audit_rules_d_audit_rules_egid_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid$'
+    line: "{{ rhel7STIG_stigrule_86719__etc_audit_rules_d_audit_rules_egid_b32_Line }}"
+  when: rhel7STIG_stigrule_86719_Manage
+# R-86719 RHEL-07-030360
+- name : stigrule_86719__etc_audit_rules_d_audit_rules_egid_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid$'
+    line: "{{ rhel7STIG_stigrule_86719__etc_audit_rules_d_audit_rules_egid_b64_Line }}"
+  when: rhel7STIG_stigrule_86719_Manage
+# R-86721 RHEL-07-030370
+- name : stigrule_86721__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S chown -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86721__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86721_Manage
+# R-86721 RHEL-07-030370
+- name : stigrule_86721__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S chown -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86721__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86721_Manage
+# R-86723 RHEL-07-030380
+- name : stigrule_86723__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S fchown -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86723__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86723_Manage
+# R-86723 RHEL-07-030380
+- name : stigrule_86723__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S fchown -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86723__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86723_Manage
+# R-86725 RHEL-07-030390
+- name : stigrule_86725__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S lchown -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86725__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86725_Manage
+# R-86725 RHEL-07-030390
+- name : stigrule_86725__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S lchown -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86725__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86725_Manage
+# R-86727 RHEL-07-030400
+- name : stigrule_86727__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S fchownat -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86727__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86727_Manage
+# R-86727 RHEL-07-030400
+- name : stigrule_86727__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S fchownat -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86727__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86727_Manage
+# R-86729 RHEL-07-030410
+- name : stigrule_86729__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S chmod -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86729__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86729_Manage
+# R-86729 RHEL-07-030410
+- name : stigrule_86729__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S chmod -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86729__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86729_Manage
+# R-86731 RHEL-07-030420
+- name : stigrule_86731__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S fchmod -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86731__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86731_Manage
+# R-86731 RHEL-07-030420
+- name : stigrule_86731__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S fchmod -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86731__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86731_Manage
+# R-86733 RHEL-07-030430
+- name : stigrule_86733__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S fchmodat -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86733__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86733_Manage
+# R-86733 RHEL-07-030430
+- name : stigrule_86733__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S fchmodat -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86733__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86733_Manage
+# R-86735 RHEL-07-030440
+- name : stigrule_86735__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S setxattr -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86735__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86735_Manage
+# R-86735 RHEL-07-030440
+- name : stigrule_86735__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S setxattr -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86735__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86735_Manage
+# R-86737 RHEL-07-030450
+- name : stigrule_86737__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S fsetxattr -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86737__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86737_Manage
+# R-86737 RHEL-07-030450
+- name : stigrule_86737__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S fsetxattr -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86737__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86737_Manage
+# R-86739 RHEL-07-030460
+- name : stigrule_86739__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S lsetxattr -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86739__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86739_Manage
+# R-86739 RHEL-07-030460
+- name : stigrule_86739__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S lsetxattr -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86739__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86739_Manage
+# R-86741 RHEL-07-030470
+- name : stigrule_86741__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S removexattr -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86741__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86741_Manage
+# R-86741 RHEL-07-030470
+- name : stigrule_86741__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S removexattr -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86741__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86741_Manage
+# R-86743 RHEL-07-030480
+- name : stigrule_86743__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S fremovexattr -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86743__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86743_Manage
+# R-86743 RHEL-07-030480
+- name : stigrule_86743__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86743__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86743_Manage
+# R-86745 RHEL-07-030490
+- name : stigrule_86745__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86745__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86745_Manage
+# R-86745 RHEL-07-030490
+- name : stigrule_86745__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=4294967295 -k perm_mod$'
+    line: "{{ rhel7STIG_stigrule_86745__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86745_Manage
+# R-86747 RHEL-07-030500
+- name : stigrule_86747__etc_audit_rules_d_audit_rules_EPERM_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86747__etc_audit_rules_d_audit_rules_EPERM_b32_Line }}"
+  when: rhel7STIG_stigrule_86747_Manage
+# R-86747 RHEL-07-030500
+- name : stigrule_86747__etc_audit_rules_d_audit_rules_EPERM_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86747__etc_audit_rules_d_audit_rules_EPERM_b64_Line }}"
+  when: rhel7STIG_stigrule_86747_Manage
+# R-86747 RHEL-07-030500
+- name : stigrule_86747__etc_audit_rules_d_audit_rules_EACCES_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86747__etc_audit_rules_d_audit_rules_EACCES_b32_Line }}"
+  when: rhel7STIG_stigrule_86747_Manage
+# R-86747 RHEL-07-030500
+- name : stigrule_86747__etc_audit_rules_d_audit_rules_EACCES_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86747__etc_audit_rules_d_audit_rules_EACCES_b64_Line }}"
+  when: rhel7STIG_stigrule_86747_Manage
+# R-86749 RHEL-07-030510
+- name : stigrule_86749__etc_audit_rules_d_audit_rules_EPERM_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S open -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86749__etc_audit_rules_d_audit_rules_EPERM_b32_Line }}"
+  when: rhel7STIG_stigrule_86749_Manage
+# R-86749 RHEL-07-030510
+- name : stigrule_86749__etc_audit_rules_d_audit_rules_EPERM_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S open -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86749__etc_audit_rules_d_audit_rules_EPERM_b64_Line }}"
+  when: rhel7STIG_stigrule_86749_Manage
+# R-86749 RHEL-07-030510
+- name : stigrule_86749__etc_audit_rules_d_audit_rules_EACCES_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S open -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86749__etc_audit_rules_d_audit_rules_EACCES_b32_Line }}"
+  when: rhel7STIG_stigrule_86749_Manage
+# R-86749 RHEL-07-030510
+- name : stigrule_86749__etc_audit_rules_d_audit_rules_EACCES_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S open -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86749__etc_audit_rules_d_audit_rules_EACCES_b64_Line }}"
+  when: rhel7STIG_stigrule_86749_Manage
+# R-86751 RHEL-07-030520
+- name : stigrule_86751__etc_audit_rules_d_audit_rules_EPERM_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S openat -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86751__etc_audit_rules_d_audit_rules_EPERM_b32_Line }}"
+  when: rhel7STIG_stigrule_86751_Manage
+# R-86751 RHEL-07-030520
+- name : stigrule_86751__etc_audit_rules_d_audit_rules_EPERM_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S openat -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86751__etc_audit_rules_d_audit_rules_EPERM_b64_Line }}"
+  when: rhel7STIG_stigrule_86751_Manage
+# R-86751 RHEL-07-030520
+- name : stigrule_86751__etc_audit_rules_d_audit_rules_EACCES_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S openat -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86751__etc_audit_rules_d_audit_rules_EACCES_b32_Line }}"
+  when: rhel7STIG_stigrule_86751_Manage
+# R-86751 RHEL-07-030520
+- name : stigrule_86751__etc_audit_rules_d_audit_rules_EACCES_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S openat -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86751__etc_audit_rules_d_audit_rules_EACCES_b64_Line }}"
+  when: rhel7STIG_stigrule_86751_Manage
+# R-86753 RHEL-07-030530
+- name : stigrule_86753__etc_audit_rules_d_audit_rules_EPERM_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86753__etc_audit_rules_d_audit_rules_EPERM_b32_Line }}"
+  when: rhel7STIG_stigrule_86753_Manage
+# R-86753 RHEL-07-030530
+- name : stigrule_86753__etc_audit_rules_d_audit_rules_EPERM_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86753__etc_audit_rules_d_audit_rules_EPERM_b64_Line }}"
+  when: rhel7STIG_stigrule_86753_Manage
+# R-86753 RHEL-07-030530
+- name : stigrule_86753__etc_audit_rules_d_audit_rules_EACCES_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86753__etc_audit_rules_d_audit_rules_EACCES_b32_Line }}"
+  when: rhel7STIG_stigrule_86753_Manage
+# R-86753 RHEL-07-030530
+- name : stigrule_86753__etc_audit_rules_d_audit_rules_EACCES_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86753__etc_audit_rules_d_audit_rules_EACCES_b64_Line }}"
+  when: rhel7STIG_stigrule_86753_Manage
+# R-86755 RHEL-07-030540
+- name : stigrule_86755__etc_audit_rules_d_audit_rules_EPERM_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S truncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86755__etc_audit_rules_d_audit_rules_EPERM_b32_Line }}"
+  when: rhel7STIG_stigrule_86755_Manage
+# R-86755 RHEL-07-030540
+- name : stigrule_86755__etc_audit_rules_d_audit_rules_EPERM_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S truncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86755__etc_audit_rules_d_audit_rules_EPERM_b64_Line }}"
+  when: rhel7STIG_stigrule_86755_Manage
+# R-86755 RHEL-07-030540
+- name : stigrule_86755__etc_audit_rules_d_audit_rules_EACCES_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S truncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86755__etc_audit_rules_d_audit_rules_EACCES_b32_Line }}"
+  when: rhel7STIG_stigrule_86755_Manage
+# R-86755 RHEL-07-030540
+- name : stigrule_86755__etc_audit_rules_d_audit_rules_EACCES_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S truncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86755__etc_audit_rules_d_audit_rules_EACCES_b64_Line }}"
+  when: rhel7STIG_stigrule_86755_Manage
+# R-86757 RHEL-07-030550
+- name : stigrule_86757__etc_audit_rules_d_audit_rules_EPERM_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86757__etc_audit_rules_d_audit_rules_EPERM_b32_Line }}"
+  when: rhel7STIG_stigrule_86757_Manage
+# R-86757 RHEL-07-030550
+- name : stigrule_86757__etc_audit_rules_d_audit_rules_EPERM_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86757__etc_audit_rules_d_audit_rules_EPERM_b64_Line }}"
+  when: rhel7STIG_stigrule_86757_Manage
+# R-86757 RHEL-07-030550
+- name : stigrule_86757__etc_audit_rules_d_audit_rules_EACCES_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86757__etc_audit_rules_d_audit_rules_EACCES_b32_Line }}"
+  when: rhel7STIG_stigrule_86757_Manage
+# R-86757 RHEL-07-030550
+- name : stigrule_86757__etc_audit_rules_d_audit_rules_EACCES_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access$'
+    line: "{{ rhel7STIG_stigrule_86757__etc_audit_rules_d_audit_rules_EACCES_b64_Line }}"
+  when: rhel7STIG_stigrule_86757_Manage
+# R-86759 RHEL-07-030560
+- name : stigrule_86759__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/sbin/semanage -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change$'
+    line: "{{ rhel7STIG_stigrule_86759__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86759_Manage
+# R-86761 RHEL-07-030570
+- name : stigrule_86761__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/sbin/setsebool -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change$'
+    line: "{{ rhel7STIG_stigrule_86761__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86761_Manage
+# R-86763 RHEL-07-030580
+- name : stigrule_86763__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/bin/chcon -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change$'
+    line: "{{ rhel7STIG_stigrule_86763__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86763_Manage
+# R-86765 RHEL-07-030590
+- name : stigrule_86765__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/sbin/setfiles -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change$'
+    line: "{{ rhel7STIG_stigrule_86765__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86765_Manage
+# R-86769 RHEL-07-030610
+- name : stigrule_86769__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-w /var/run/faillock -p wa -k logins$'
+    line: "{{ rhel7STIG_stigrule_86769__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86769_Manage
+# R-86771 RHEL-07-030620
+- name : stigrule_86771__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-w /var/log/lastlog -p wa -k logins$'
+    line: "{{ rhel7STIG_stigrule_86771__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86771_Manage
+# R-86773 RHEL-07-030630
+- name : stigrule_86773__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/bin/passwd -F auid>=1000 -F auid!=4294967295 -k privileged-passwd$'
+    line: "{{ rhel7STIG_stigrule_86773__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86773_Manage
+# R-86775 RHEL-07-030640
+- name : stigrule_86775__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/sbin/unix_chkpwd -F auid>=1000 -F auid!=4294967295 -k privileged-passwd$'
+    line: "{{ rhel7STIG_stigrule_86775__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86775_Manage
+# R-86777 RHEL-07-030650
+- name : stigrule_86777__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/bin/gpasswd -F auid>=1000 -F auid!=4294967295 -k privileged-passwd$'
+    line: "{{ rhel7STIG_stigrule_86777__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86777_Manage
+# R-86779 RHEL-07-030660
+- name : stigrule_86779__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/bin/chage -F auid>=1000 -F auid!=4294967295 -k privileged-passwd$'
+    line: "{{ rhel7STIG_stigrule_86779__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86779_Manage
+# R-86781 RHEL-07-030670
+- name : stigrule_86781__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/sbin/userhelper -F auid>=1000 -F auid!=4294967295 -k privileged-passwd$'
+    line: "{{ rhel7STIG_stigrule_86781__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86781_Manage
+# R-86783 RHEL-07-030680
+- name : stigrule_86783__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/bin/su -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change$'
+    line: "{{ rhel7STIG_stigrule_86783__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86783_Manage
+# R-86785 RHEL-07-030690
+- name : stigrule_86785__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/bin/sudo -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change$'
+    line: "{{ rhel7STIG_stigrule_86785__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86785_Manage
+# R-86787 RHEL-07-030700
+- name : stigrule_86787__etc_audit_rules_d_audit_rules_sudoers
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-w /etc/sudoers -p wa -k privileged-actions$'
+    line: "{{ rhel7STIG_stigrule_86787__etc_audit_rules_d_audit_rules_sudoers_Line }}"
+  when: rhel7STIG_stigrule_86787_Manage
+# R-86787 RHEL-07-030700
+- name : stigrule_86787__etc_audit_rules_d_audit_rules_sudoers_d
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-w /etc/sudoers.d/ -p wa -k privileged-actions$'
+    line: "{{ rhel7STIG_stigrule_86787__etc_audit_rules_d_audit_rules_sudoers_d_Line }}"
+  when: rhel7STIG_stigrule_86787_Manage
+# R-86789 RHEL-07-030710
+- name : stigrule_86789__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/bin/newgrp -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change$'
+    line: "{{ rhel7STIG_stigrule_86789__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86789_Manage
+# R-86791 RHEL-07-030720
+- name : stigrule_86791__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/bin/chsh -F auid>=1000 -F auid!=4294967295 -k privileged-priv_change$'
+    line: "{{ rhel7STIG_stigrule_86791__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86791_Manage
+# R-86795 RHEL-07-030740
+- name : stigrule_86795__etc_audit_rules_d_audit_rules_mount_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=4294967295 -k privileged-mount$'
+    line: "{{ rhel7STIG_stigrule_86795__etc_audit_rules_d_audit_rules_mount_b32_Line }}"
+  when: rhel7STIG_stigrule_86795_Manage
+# R-86795 RHEL-07-030740
+- name : stigrule_86795__etc_audit_rules_d_audit_rules_mount_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k privileged-mount$'
+    line: "{{ rhel7STIG_stigrule_86795__etc_audit_rules_d_audit_rules_mount_b64_Line }}"
+  when: rhel7STIG_stigrule_86795_Manage
+# R-86795 RHEL-07-030740
+- name : stigrule_86795__etc_audit_rules_d_audit_rules__usr_bin_mount
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/bin/mount -F auid>=1000 -F auid!=4294967295 -k privileged-mount$'
+    line: "{{ rhel7STIG_stigrule_86795__etc_audit_rules_d_audit_rules__usr_bin_mount_Line }}"
+  when: rhel7STIG_stigrule_86795_Manage
+# R-86797 RHEL-07-030750
+- name : stigrule_86797__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/bin/umount -F auid>=1000 -F auid!=4294967295 -k privileged-mount$'
+    line: "{{ rhel7STIG_stigrule_86797__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86797_Manage
+# R-86799 RHEL-07-030760
+- name : stigrule_86799__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/sbin/postdrop -F auid>=1000 -F auid!=4294967295 -k privileged-postfix$'
+    line: "{{ rhel7STIG_stigrule_86799__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86799_Manage
+# R-86801 RHEL-07-030770
+- name : stigrule_86801__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/sbin/postqueue -F auid>=1000 -F auid!=4294967295 -k privileged-postfix$'
+    line: "{{ rhel7STIG_stigrule_86801__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86801_Manage
+# R-86803 RHEL-07-030780
+- name : stigrule_86803__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/libexec/openssh/ssh-keysign -F auid>=1000 -F auid!=4294967295 -k privileged-ssh$'
+    line: "{{ rhel7STIG_stigrule_86803__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86803_Manage
+# R-86807 RHEL-07-030800
+- name : stigrule_86807__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/bin/crontab -F auid>=1000 -F auid!=4294967295 -k privileged-cron$'
+    line: "{{ rhel7STIG_stigrule_86807__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86807_Manage
+# R-86809 RHEL-07-030810
+- name : stigrule_86809__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F path=/usr/sbin/pam_timestamp_check -F auid>=1000 -F auid!=4294967295 -k privileged-pam$'
+    line: "{{ rhel7STIG_stigrule_86809__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86809_Manage
+# R-86811 RHEL-07-030820
+- name : stigrule_86811__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S init_module -k module-change$'
+    line: "{{ rhel7STIG_stigrule_86811__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86811_Manage
+# R-86811 RHEL-07-030820
+- name : stigrule_86811__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S init_module -k module-change$'
+    line: "{{ rhel7STIG_stigrule_86811__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86811_Manage
+# R-86813 RHEL-07-030830
+- name : stigrule_86813__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S delete_module -k module-change$'
+    line: "{{ rhel7STIG_stigrule_86813__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86813_Manage
+# R-86813 RHEL-07-030830
+- name : stigrule_86813__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S delete_module -k module-change$'
+    line: "{{ rhel7STIG_stigrule_86813__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86813_Manage
+# R-86815 RHEL-07-030840
+- name : stigrule_86815__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-w /usr/bin/kmod -p x -F auid!=4294967295 -k module-change$'
+    line: "{{ rhel7STIG_stigrule_86815__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86815_Manage
+# R-86821 RHEL-07-030870
+- name : stigrule_86821__etc_audit_rules_d_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-w /etc/passwd -p wa -k identity$'
+    line: "{{ rhel7STIG_stigrule_86821__etc_audit_rules_d_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_86821_Manage
+# R-86823 RHEL-07-030880
+- name : stigrule_86823__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S rename -F auid>=1000 -F auid!=4294967295 -k delete$'
+    line: "{{ rhel7STIG_stigrule_86823__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86823_Manage
+# R-86823 RHEL-07-030880
+- name : stigrule_86823__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S rename -F auid>=1000 -F auid!=4294967295 -k delete$'
+    line: "{{ rhel7STIG_stigrule_86823__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86823_Manage
+# R-86825 RHEL-07-030890
+- name : stigrule_86825__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S renameat -F auid>=1000 -F auid!=4294967295 -k delete$'
+    line: "{{ rhel7STIG_stigrule_86825__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86825_Manage
+# R-86825 RHEL-07-030890
+- name : stigrule_86825__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S renameat -F auid>=1000 -F auid!=4294967295 -k delete$'
+    line: "{{ rhel7STIG_stigrule_86825__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86825_Manage
+# R-86827 RHEL-07-030900
+- name : stigrule_86827__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S rmdir -F auid>=1000 -F auid!=4294967295 -k delete$'
+    line: "{{ rhel7STIG_stigrule_86827__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86827_Manage
+# R-86827 RHEL-07-030900
+- name : stigrule_86827__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S rmdir -F auid>=1000 -F auid!=4294967295 -k delete$'
+    line: "{{ rhel7STIG_stigrule_86827__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86827_Manage
+# R-86829 RHEL-07-030910
+- name : stigrule_86829__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S unlink -F auid>=1000 -F auid!=4294967295 -k delete$'
+    line: "{{ rhel7STIG_stigrule_86829__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86829_Manage
+# R-86829 RHEL-07-030910
+- name : stigrule_86829__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S unlink -F auid>=1000 -F auid!=4294967295 -k delete$'
+    line: "{{ rhel7STIG_stigrule_86829__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86829_Manage
+# R-86831 RHEL-07-030920
+- name : stigrule_86831__etc_audit_rules_d_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S unlinkat -F auid>=1000 -F auid!=4294967295 -k delete$'
+    line: "{{ rhel7STIG_stigrule_86831__etc_audit_rules_d_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_86831_Manage
+# R-86831 RHEL-07-030920
+- name : stigrule_86831__etc_audit_rules_d_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S unlinkat -F auid>=1000 -F auid!=4294967295 -k delete$'
+    line: "{{ rhel7STIG_stigrule_86831__etc_audit_rules_d_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_86831_Manage
+# R-86841 RHEL-07-040000
+- name: stigrule_86841__etc_security_limits_conf
+  lineinfile:
+    path: /etc/security/limits.conf
+    regexp: '^\* hard maxlogins'
+    line: "{{ rhel7STIG_stigrule_86841__etc_security_limits_conf_Line }}"
+    create: yes
+  when:
+    - rhel7STIG_stigrule_86841_Manage
+# R-86845 RHEL-07-040110
+- name: stigrule_86845_Ciphers
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)Ciphers\s+'
+    line: "{{ rhel7STIG_stigrule_86845_Ciphers_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86845_Manage
+    - "'openssh-server' in packages"
+# R-86847 RHEL-07-040160
+- name: stigrule_86847__etc_profile_d_tmout_sh
+  copy:
+    dest: "{{ rhel7STIG_stigrule_86847__etc_profile_d_tmout_sh_Dest }}"
+    content: "{{ rhel7STIG_stigrule_86847__etc_profile_d_tmout_sh_Content }}"
+  when:
+    - rhel7STIG_stigrule_86847_Manage
+# R-86849 RHEL-07-040170
+- name: stigrule_86849_banner
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)banner\s+'
+    line: "{{ rhel7STIG_stigrule_86849_banner_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86849_Manage
+    - "'openssh-server' in packages"
+# R-86857 RHEL-07-040300
+- name: stigrule_86857_openssh_clients_x86_64
+  yum:
+    name: openssh-clients.x86_64
+    state: "{{ rhel7STIG_stigrule_86857_openssh_clients_x86_64_State }}"
+  when: rhel7STIG_stigrule_86857_Manage
+# R-86857 RHEL-07-040300
+- name: stigrule_86857_openssh_server_x86_64
+  yum:
+    name: openssh-server.x86_64
+    state: "{{ rhel7STIG_stigrule_86857_openssh_server_x86_64_State }}"
+  when: rhel7STIG_stigrule_86857_Manage
+# R-86859 RHEL-07-040310
+- name: check if sshd.service is installed
+  shell: ! systemctl list-unit-files | grep "^sshd.service[ \t]\+"
+  changed_when: False
+  check_mode: no
+  register: result
+  failed_when: result.rc > 1
+- name: stigrule_86859_sshd_enable
+  service:
+    name: sshd.service
+    enabled: "{{ rhel7STIG_stigrule_86859_sshd_enable_Enabled }}"
+  when:
+    - rhel7STIG_stigrule_86859_Manage
+    - result.rc == 0
+# R-86859 RHEL-07-040310
+- name: check if sshd.service is installed
+  shell: ! systemctl list-unit-files | grep "^sshd.service[ \t]\+"
+  changed_when: False
+  check_mode: no
+  register: result
+  failed_when: result.rc > 1
+- name: stigrule_86859_sshd_start
+  service:
+    name: sshd.service
+    state: "{{ rhel7STIG_stigrule_86859_sshd_start_State }}"
+  when:
+    - rhel7STIG_stigrule_86859_Manage
+    - result.rc == 0
+# R-86861 RHEL-07-040320
+- name: stigrule_86861_ClientAliveInterval
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)ClientAliveInterval\s+'
+    line: "{{ rhel7STIG_stigrule_86861_ClientAliveInterval_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86861_Manage
+    - "'openssh-server' in packages"
+# R-86863 RHEL-07-040330
+- name: stigrule_86863_RhostsRSAAuthentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)RhostsRSAAuthentication\s+'
+    line: "{{ rhel7STIG_stigrule_86863_RhostsRSAAuthentication_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86863_Manage
+    - "'openssh-server' in packages"
+# R-86865 RHEL-07-040340
+- name: stigrule_86865_ClientAliveCountMax
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)ClientAliveCountMax\s+'
+    line: "{{ rhel7STIG_stigrule_86865_ClientAliveCountMax_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86865_Manage
+    - "'openssh-server' in packages"
+# R-86867 RHEL-07-040350
+- name: stigrule_86867_IgnoreRhosts
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)IgnoreRhosts\s+'
+    line: "{{ rhel7STIG_stigrule_86867_IgnoreRhosts_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86867_Manage
+    - "'openssh-server' in packages"
+# R-86869 RHEL-07-040360
+- name: stigrule_86869_PrintLastLog
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)PrintLastLog\s+'
+    line: "{{ rhel7STIG_stigrule_86869_PrintLastLog_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86869_Manage
+    - "'openssh-server' in packages"
+# R-86871 RHEL-07-040370
+- name: stigrule_86871_PermitRootLogin
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)PermitRootLogin\s+'
+    line: "{{ rhel7STIG_stigrule_86871_PermitRootLogin_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86871_Manage
+    - "'openssh-server' in packages"
+# R-86873 RHEL-07-040380
+- name: stigrule_86873_IgnoreUserKnownHosts
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)IgnoreUserKnownHosts\s+'
+    line: "{{ rhel7STIG_stigrule_86873_IgnoreUserKnownHosts_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86873_Manage
+    - "'openssh-server' in packages"
+# R-86875 RHEL-07-040390
+- name: stigrule_86875_Protocol
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)Protocol\s+'
+    line: "{{ rhel7STIG_stigrule_86875_Protocol_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86875_Manage
+    - "'openssh-server' in packages"
+# R-86877 RHEL-07-040400
+- name: stigrule_86877_MACs
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)MACs\s+'
+    line: "{{ rhel7STIG_stigrule_86877_MACs_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86877_Manage
+    - "'openssh-server' in packages"
+# R-86883 RHEL-07-040430
+- name: stigrule_86883_GSSAPIAuthentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)GSSAPIAuthentication\s+'
+    line: "{{ rhel7STIG_stigrule_86883_GSSAPIAuthentication_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86883_Manage
+    - "'openssh-server' in packages"
+# R-86885 RHEL-07-040440
+- name: stigrule_86885_KerberosAuthentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)KerberosAuthentication\s+'
+    line: "{{ rhel7STIG_stigrule_86885_KerberosAuthentication_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86885_Manage
+    - "'openssh-server' in packages"
+# R-86887 RHEL-07-040450
+- name: stigrule_86887_StrictModes
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)StrictModes\s+'
+    line: "{{ rhel7STIG_stigrule_86887_StrictModes_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86887_Manage
+    - "'openssh-server' in packages"
+# R-86889 RHEL-07-040460
+- name: stigrule_86889_UsePrivilegeSeparation
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)UsePrivilegeSeparation\s+'
+    line: "{{ rhel7STIG_stigrule_86889_UsePrivilegeSeparation_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86889_Manage
+    - "'openssh-server' in packages"
+# R-86891 RHEL-07-040470
+- name: stigrule_86891_Compression
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)Compression\s+'
+    line: "{{ rhel7STIG_stigrule_86891_Compression_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86891_Manage
+    - "'openssh-server' in packages"
+# R-86897 RHEL-07-040520
+- name: stigrule_86897_firewalld_service
+  yum:
+    name: firewalld
+    state: "{{ rhel7STIG_stigrule_86897_firewalld_service_State }}"
+  when: rhel7STIG_stigrule_86897_Manage
+# R-86897 RHEL-07-040520
+- name: check if firewalld.service is installed
+  shell: ! systemctl list-unit-files | grep "^firewalld.service[ \t]\+"
+  changed_when: False
+  check_mode: no
+  register: result
+  failed_when: result.rc > 1
+- name: stigrule_86897_firewalld_active
+  service:
+    name: firewalld.service
+    enabled: "{{ rhel7STIG_stigrule_86897_firewalld_active_Enabled }}"
+  when:
+    - rhel7STIG_stigrule_86897_Manage
+    - result.rc == 0
+# R-86897 RHEL-07-040520
+- name: check if firewalld.service is installed
+  shell: ! systemctl list-unit-files | grep "^firewalld.service[ \t]\+"
+  changed_when: False
+  check_mode: no
+  register: result
+  failed_when: result.rc > 1
+- name: stigrule_86897_firewalld_start
+  service:
+    name: firewalld.service
+    state: "{{ rhel7STIG_stigrule_86897_firewalld_start_State }}"
+  when:
+    - rhel7STIG_stigrule_86897_Manage
+    - result.rc == 0
+# R-86907 RHEL-07-040610
+- name: stigrule_86907_net_ipv4_conf_all_accept_source_route
+  sysctl:
+    name: net.ipv4.conf.all.accept_source_route
+    value: "{{ rhel7STIG_stigrule_86907_net_ipv4_conf_all_accept_source_route_Value }}"
+  when: rhel7STIG_stigrule_86907_Manage
+# R-86909 RHEL-07-040620
+- name: stigrule_86909_net_ipv4_conf_default_accept_source_route
+  sysctl:
+    name: net.ipv4.conf.default.accept_source_route
+    value: "{{ rhel7STIG_stigrule_86909_net_ipv4_conf_default_accept_source_route_Value }}"
+  when: rhel7STIG_stigrule_86909_Manage
+# R-86911 RHEL-07-040630
+- name: stigrule_86911_net_ipv4_icmp_echo_ignore_broadcasts
+  sysctl:
+    name: net.ipv4.icmp_echo_ignore_broadcasts
+    value: "{{ rhel7STIG_stigrule_86911_net_ipv4_icmp_echo_ignore_broadcasts_Value }}"
+  when: rhel7STIG_stigrule_86911_Manage
+# R-86913 RHEL-07-040640
+- name: stigrule_86913_net_ipv4_conf_default_accept_redirects
+  sysctl:
+    name: net.ipv4.conf.default.accept_redirects
+    value: "{{ rhel7STIG_stigrule_86913_net_ipv4_conf_default_accept_redirects_Value }}"
+  when: rhel7STIG_stigrule_86913_Manage
+# R-86915 RHEL-07-040650
+- name: stigrule_86915_net_ipv4_conf_default_send_redirects
+  sysctl:
+    name: net.ipv4.conf.default.send_redirects
+    value: "{{ rhel7STIG_stigrule_86915_net_ipv4_conf_default_send_redirects_Value }}"
+  when: rhel7STIG_stigrule_86915_Manage
+# R-86917 RHEL-07-040660
+- name: stigrule_86917_net_ipv4_conf_all_send_redirects
+  sysctl:
+    name: net.ipv4.conf.all.send_redirects
+    value: "{{ rhel7STIG_stigrule_86917_net_ipv4_conf_all_send_redirects_Value }}"
+  when: rhel7STIG_stigrule_86917_Manage
+# R-86921 RHEL-07-040680
+- name: check if postfix is installed and configured
+  shell: "yum list installed postfix | grep -q postfix && ! postconf -n smtpd_client_restrictions | grep -q '^smtpd_client_restrictions = permit_mynetworks,reject$'"
+  args:
+    warn: no
+  changed_when: False
+  check_mode: no
+  register: cmd_result
+  failed_when: cmd_result.rc > 1
+- name: stigrule_86921_postconf__e__smtpd_client_restrictions___permit_mynetworks_reject_
+  shell: "{{ rhel7STIG_stigrule_86921_postconf__e__smtpd_client_restrictions___permit_mynetworks_reject__Command }}"
+  when:
+    - rhel7STIG_stigrule_86921_Manage
+    - cmd_result.rc == 0
+# R-86923 RHEL-07-040690
+- name: stigrule_86923_vsftpd
+  yum:
+    name: vsftpd
+    state: "{{ rhel7STIG_stigrule_86923_vsftpd_State }}"
+  when: rhel7STIG_stigrule_86923_Manage
+# R-86925 RHEL-07-040700
+- name: stigrule_86925_tftp_server
+  yum:
+    name: tftp-server
+    state: "{{ rhel7STIG_stigrule_86925_tftp_server_State }}"
+  when: rhel7STIG_stigrule_86925_Manage
+# R-86927 RHEL-07-040710
+- name: stigrule_86927_X11Forwarding
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^\s*(?i)X11Forwarding\s+'
+    line: "{{ rhel7STIG_stigrule_86927_X11Forwarding_Line }}"
+  notify: ssh_restart
+  when:
+    - rhel7STIG_stigrule_86927_Manage
+    - "'openssh-server' in packages"
+# R-86931 RHEL-07-040730
+# Document the requirement for an X Windows server with the ISSO or remove.
+- name: stigrule_86931_xorg_x11_server_common
+  yum:
+    name: xorg-x11-server-common
+    state: "{{ rhel7STIG_stigrule_86931_xorg_x11_server_common_State }}"
+  when: rhel7STIG_stigrule_86931_Manage
+# R-86933 RHEL-07-040740
+- name: stigrule_86933_net_ipv4_ip_forward
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: "{{ rhel7STIG_stigrule_86933_net_ipv4_ip_forward_Value }}"
+  when: rhel7STIG_stigrule_86933_Manage
+# R-86943 RHEL-07-040830
+- name: stigrule_86943_net_ipv6_conf_all_accept_source_route
+  sysctl:
+    name: net.ipv6.conf.all.accept_source_route
+    value: "{{ rhel7STIG_stigrule_86943_net_ipv6_conf_all_accept_source_route_Value }}"
+  when: rhel7STIG_stigrule_86943_Manage
+# R-87041 RHEL-07-041001
+- name: stigrule_87041_esc
+  yum:
+    name: esc
+    state: "{{ rhel7STIG_stigrule_87041_esc_State }}"
+  when: rhel7STIG_stigrule_87041_Manage
+# R-87041 RHEL-07-041001
+- name: stigrule_87041_pam_pkcs11
+  yum:
+    name: pam_pkcs11
+    state: "{{ rhel7STIG_stigrule_87041_pam_pkcs11_State }}"
+  when: rhel7STIG_stigrule_87041_Manage
+# R-87807 RHEL-07-010081
+- name: stigrule_87807__etc_dconf_db_local_d_locks_session
+  lineinfile:
+    path: /etc/dconf/db/local.d/locks/session
+    line: "{{ rhel7STIG_stigrule_87807__etc_dconf_db_local_d_locks_session_Line }}"
+    create: yes
+  notify: dconf_update
+  when:
+    - rhel7STIG_stigrule_87807_Manage
+    - "'dconf' in packages"
+# R-87809 RHEL-07-010082
+- name: stigrule_87809__etc_dconf_db_local_d_locks_session
+  lineinfile:
+    path: /etc/dconf/db/local.d/locks/session
+    line: "{{ rhel7STIG_stigrule_87809__etc_dconf_db_local_d_locks_session_Line }}"
+    create: yes
+  notify: dconf_update
+  when:
+    - rhel7STIG_stigrule_87809_Manage
+    - "'dconf' in packages"
+# R-87815 RHEL-07-030321
+- name: stigrule_87815__etc_audisp_audisp_remote_conf
+  lineinfile:
+    path: /etc/audisp/audisp-remote.conf
+    regexp: '^network_failure_action = '
+    line: "{{ rhel7STIG_stigrule_87815__etc_audisp_audisp_remote_conf_Line }}"
+    create: yes
+  notify: auditd_restart
+  when:
+    - rhel7STIG_stigrule_87815_Manage
+# R-87817 RHEL-07-030871
+- name : stigrule_87817__etc_audit_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-w /etc/group -p wa -k identity$'
+    line: "{{ rhel7STIG_stigrule_87817__etc_audit_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_87817_Manage
+# R-87819 RHEL-07-030872
+- name : stigrule_87819__etc_audit_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-w /etc/gshadow -p wa -k identity$'
+    line: "{{ rhel7STIG_stigrule_87819__etc_audit_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_87819_Manage
+# R-87823 RHEL-07-030873
+- name : stigrule_87823__etc_audit_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-w /etc/shadow -p wa -k identity$'
+    line: "{{ rhel7STIG_stigrule_87823__etc_audit_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_87823_Manage
+# R-87825 RHEL-07-030874
+- name : stigrule_87825__etc_audit_audit_rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-w /etc/security/opasswd -p wa -k identity$'
+    line: "{{ rhel7STIG_stigrule_87825__etc_audit_audit_rules_Line }}"
+  when: rhel7STIG_stigrule_87825_Manage
+# R-87827 RHEL-07-040641
+- name: stigrule_87827_net_ipv4_conf_all_accept_redirects
+  sysctl:
+    name: net.ipv4.conf.all.accept_redirects
+    value: "{{ rhel7STIG_stigrule_87827_net_ipv4_conf_all_accept_redirects_Value }}"
+  when: rhel7STIG_stigrule_87827_Manage
+# R-87829 RHEL-07-041010
+- name: check if wireless network adapters are disabled
+  shell: "[[ $(nmcli radio wifi)  == 'enabled' ]]"
+  changed_when: False
+  check_mode: no
+  register: cmd_result
+  failed_when: cmd_result.rc > 1
+- name: stigrule_87829_nmcli_radio_wifi_off
+  shell: "{{ rhel7STIG_stigrule_87829_nmcli_radio_wifi_off_Command }}"
+  when:
+    - rhel7STIG_stigrule_87829_Manage
+    - cmd_result.rc == 0
+# R-92515 RHEL-07-010061
+- name: stigrule_92515__etc_dconf_db_local_d_00_defaults
+  ini_file:
+    path: /etc/dconf/db/local.d/00-defaults
+    section: org/gnome/login-screen
+    option: enable-smartcard-authentication
+    value: "{{ rhel7STIG_stigrule_92515__etc_dconf_db_local_d_00_defaults_Value }}"
+    no_extra_spaces: yes
+  notify: dconf_update
+  when:
+    - rhel7STIG_stigrule_92515_Manage
+    - "'dconf' in packages"
+# R-92517 RHEL-07-020101
+- name: stigrule_92517__etc_modprobe_d_dccp_conf
+  copy:
+    dest: "{{ rhel7STIG_stigrule_92517__etc_modprobe_d_dccp_conf_Dest }}"
+    content: "{{ rhel7STIG_stigrule_92517__etc_modprobe_d_dccp_conf_Content }}"
+  when:
+    - rhel7STIG_stigrule_92517_Manage
+# R-92521 RHEL-07-040201
+- name: stigrule_92521_kernel_randomize_va_space
+  sysctl:
+    name: kernel.randomize_va_space
+    value: "{{ rhel7STIG_stigrule_92521_kernel_randomize_va_space_Value }}"
+  when: rhel7STIG_stigrule_92521_Manage
+# R-93701 RHEL-07-010062
+- name: stigrule_93701__etc_dconf_db_local_d_locks_session
+  lineinfile:
+    path: /etc/dconf/db/local.d/locks/session
+    line: "{{ rhel7STIG_stigrule_93701__etc_dconf_db_local_d_locks_session_Line }}"
+    create: yes
+  notify: dconf_update
+  when:
+    - rhel7STIG_stigrule_93701_Manage
+    - "'dconf' in packages"
+# R-93703 RHEL-07-010101
+- name: stigrule_93703__etc_dconf_db_local_d_locks_session
+  lineinfile:
+    path: /etc/dconf/db/local.d/locks/session
+    line: "{{ rhel7STIG_stigrule_93703__etc_dconf_db_local_d_locks_session_Line }}"
+    create: yes
+  notify: dconf_update
+  when:
+    - rhel7STIG_stigrule_93703_Manage
+    - "'dconf' in packages"
+# R-93705 RHEL-07-030819
+- name : stigrule_93705__etc_audit_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S create_module -k module-change$'
+    line: "{{ rhel7STIG_stigrule_93705__etc_audit_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_93705_Manage
+# R-93705 RHEL-07-030819
+- name : stigrule_93705__etc_audit_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S create_module -k module-change$'
+    line: "{{ rhel7STIG_stigrule_93705__etc_audit_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_93705_Manage
+# R-93707 RHEL-07-030821
+- name : stigrule_93707__etc_audit_audit_rules_b32
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b32 -S finit_module -k module-change$'
+    line: "{{ rhel7STIG_stigrule_93707__etc_audit_audit_rules_b32_Line }}"
+  when: rhel7STIG_stigrule_93707_Manage
+# R-93707 RHEL-07-030821
+- name : stigrule_93707__etc_audit_audit_rules_b64
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-a always,exit -F arch=b64 -S finit_module -k module-change$'
+    line: "{{ rhel7STIG_stigrule_93707__etc_audit_audit_rules_b64_Line }}"
+  when: rhel7STIG_stigrule_93707_Manage
+# R-95727 RHEL-07-030200
+- name: stigrule_95727__etc_audisp_plugins_d_au_remote_conf
+  lineinfile:
+    path: /etc/audisp/plugins.d/au-remote.conf
+    regexp: '^active = '
+    line: "{{ rhel7STIG_stigrule_95727__etc_audisp_plugins_d_au_remote_conf_Line }}"
+    create: yes
+  notify: auditd_restart
+  when:
+    - rhel7STIG_stigrule_95727_Manage
+# R-95729 RHEL-07-030201
+- name: stigrule_95729__etc_audisp_plugins_d_au_remote_conf_direction
+  lineinfile:
+    path: /etc/audisp/plugins.d/au-remote.conf
+    regexp: '^direction = '
+    line: "{{ rhel7STIG_stigrule_95729__etc_audisp_plugins_d_au_remote_conf_direction_Line }}"
+    create: yes
+  notify: auditd_restart
+  when:
+    - rhel7STIG_stigrule_95729_Manage
+# R-95729 RHEL-07-030201
+- name: stigrule_95729__etc_audisp_plugins_d_au_remote_conf_path
+  lineinfile:
+    path: /etc/audisp/plugins.d/au-remote.conf
+    regexp: '^path = '
+    line: "{{ rhel7STIG_stigrule_95729__etc_audisp_plugins_d_au_remote_conf_path_Line }}"
+    create: yes
+  notify: auditd_restart
+  when:
+    - rhel7STIG_stigrule_95729_Manage
+# R-95729 RHEL-07-030201
+- name: stigrule_95729__etc_audisp_plugins_d_au_remote_conf_type
+  lineinfile:
+    path: /etc/audisp/plugins.d/au-remote.conf
+    regexp: '^type = '
+    line: "{{ rhel7STIG_stigrule_95729__etc_audisp_plugins_d_au_remote_conf_type_Line }}"
+    create: yes
+  notify: auditd_restart
+  when:
+    - rhel7STIG_stigrule_95729_Manage
+# R-95731 RHEL-07-030210
+- name: stigrule_95731__etc_audisp_audispd_conf
+  lineinfile:
+    path: /etc/audisp/audispd.conf
+    regexp: '^overflow_action = '
+    line: "{{ rhel7STIG_stigrule_95731__etc_audisp_audispd_conf_Line }}"
+    create: yes
+  notify: auditd_restart
+  when:
+    - rhel7STIG_stigrule_95731_Manage
+# R-95733 RHEL-07-030211
+- name: stigrule_95733__etc_audisp_audispd_conf
+  lineinfile:
+    path: /etc/audisp/audispd.conf
+    regexp: '^name_format = '
+    line: "{{ rhel7STIG_stigrule_95733__etc_audisp_audispd_conf_Line }}"
+    create: yes
+  notify: auditd_restart
+  when:
+    - rhel7STIG_stigrule_95733_Manage
