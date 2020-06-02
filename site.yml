@@ -1,4 +1,6 @@
 - hosts: localhost
   gather_facts: no
+  vars_files:
+  - vars/silo.yml
   roles:
   - rhel7STIG

@@ -1,0 +1,33 @@
+# R-86541 RHEL-07-010190
+rhel7STIG_stigrule_86541_Manage: True
+rhel7STIG_stigrule_86541__etc_security_pwquality_conf_Line: 'maxclassrepeat = 6'
+
+# R-86549 RHEL-07-010230
+rhel7STIG_stigrule_86549_Manage: True
+rhel7STIG_stigrule_86549__etc_login_defs_Line: 'PASS_MIN_DAYS -1'
+
+# R-86551 RHEL-07-010240
+rhel7STIG_stigrule_86551_Manage: True
+rhel7STIG_stigrule_86551_chage__m_1_user_Command: chage -m 0
+
+# R-86553 RHEL-07-010250
+rhel7STIG_stigrule_86553_Manage: True
+rhel7STIG_stigrule_86553__etc_login_defs_Line: 'PASS_MAX_DAYS 180'
+
+# R-86555 RHEL-07-010260
+rhel7STIG_stigrule_86555_Manage: True
+rhel7STIG_stigrule_86555_chage__M_60_user_Command: chage -M 180
+
+# R-86559 RHEL-07-010280
+rhel7STIG_stigrule_86559_Manage: True
+rhel7STIG_stigrule_86559__etc_security_pwquality_conf_Line: 'minlen = 14'
+
+# R-86565 RHEL-07-010310
+rhel7STIG_stigrule_86565_Manage: False
+
+# R-86609 RHEL-07-020110
+rhel7STIG_stigrule_86609_Manage: False
+
+# R-86715 RHEL-07-030340
+rhel7STIG_stigrule_86715_Manage: True
+rhel7STIG_stigrule_86715__etc_audit_auditd_conf_Line: 'space_left_action = rotate'
